@@ -39,11 +39,11 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 </style></head><body>
 <header><button class="tg" id="tg" type="button" aria-label="Switch light or dark">Light / dark</button>
 <h1>Echo Combat on Quest</h1><p>Ducky&#x27;s fan port of Echo Combat to the standalone Quest 3 and the Steam Frame. This page tracks how far it has come.</p>
-<p class="mut">Updated 2026-10-07 01:02. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here.</p></header>
+<p class="mut">Updated 2026-10-07 01:46. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here.</p></header>
 <nav><a href="#areas">Areas</a><a href="#scripts">Scripts</a><a href="#videos">Videos</a><a href="#compare">PC vs Quest</a><a href="#shots">Screenshots</a><a href="#frame">Steam Frame</a><a href="#issues">Known issues</a></nav>
 <section class="card sum" aria-label="Summary">
-<div class="stat"><b>29 / 100</b><span class="lab">combat scripts rebuilt for Quest</span></div>
-<div class="stat"><b>24</b><span class="lab">rebuilt scripts reviewed</span></div>
+<div class="stat"><b>31 / 100</b><span class="lab">combat scripts rebuilt for Quest</span></div>
+<div class="stat"><b>28</b><span class="lab">rebuilt scripts reviewed</span></div>
 </section>
 <h2 id="areas">Areas</h2><p class="mut"><span class="st done">done</span> = seen working on the headset, <span class="st partial">partly</span> = partly working, <span class="st open">to do</span> = not yet, <span class="st deferred">on hold</span> = paused by choice.</p><div class="areas">
 <div class="card" id="a-maps"><h3>Maps</h3><p>All four combat maps and the combat lobby wing load on the Quest 3. The look is getting closer to PC; some surfaces, glass and screens still differ.</p><ul class="chk">
@@ -54,7 +54,7 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <li><span class="st partial">partly</span><span>Glass, signs and screens drawn like on PC</span></li>
 <li><span class="st open">to do</span><span>No floating or missing cubes</span></li>
 </ul></div>
-<div class="card" id="a-match"><h3>Match flow and round start</h3><p>A round now starts on its own in Practice AI and Find Combat, and in private matches once a team readies up. The exit into the map opened in a private Combustion match; in Dyson the spawn shield still blocks it.</p><ul class="chk">
+<div class="card" id="a-match"><h3>Match flow and round start</h3><p>A round now starts on its own in Practice AI and Find Combat, and in private matches once a team readies up. The exit into the map opened in a private Combustion match; in Dyson the spawn shield still blocks it. The newest build fixes the match clocks (countdown and game timer); that is checked in the next play test.</p><ul class="chk">
 <li><span class="st done">done</span><span>Lobby terminal starts a combat match</span></li>
 <li><span class="st done">done</span><span>The round starts in Practice AI / Find Combat</span></li>
 <li><span class="st done">done</span><span>The round starts in a private match after READY</span></li>
@@ -62,7 +62,7 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <li><span class="st open">to do</span><span>Capture point and payload score</span></li>
 <li><span class="st open">to do</span><span>A full match ends and returns to the lobby</span></li>
 </ul><p class="mut">Game-logic pieces rebuilt for Quest: 6 of 6 (6 reviewed).</p></div>
-<div class="card" id="a-guns"><h3>Guns</h3><p>All eight guns are rebuilt and fire on the Quest. Crashes on some guns, hits and damage are being worked on; bots don&#x27;t shoot back yet.</p><ul class="chk">
+<div class="card" id="a-guns"><h3>Guns</h3><p>All eight guns are rebuilt and fire on the Quest. The newest build fixes a crash that hit every gun on the Steam Frame; holding the magnum or the rocket launcher for about ten seconds can still crash. Hits and damage are being worked on; bots don&#x27;t shoot back yet.</p><ul class="chk">
 <li><span class="st done">done</span><span>The first gun fires a real bullet and hits</span></li>
 <li><span class="st partial">partly</span><span>All 8 guns fire, one shot per trigger press</span></li>
 <li><span class="st open">to do</span><span>No crash when firing any gun</span></li>
@@ -71,7 +71,7 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <li><span class="st open">to do</span><span>Bots shoot back</span></li>
 <li><span class="st open">to do</span><span>Grenades, tac mods and ordnance</span></li>
 </ul><p class="mut">Game-logic pieces rebuilt for Quest: 12 of 13 (12 reviewed).</p></div>
-<div class="card" id="a-terminals"><h3>Terminals and text</h3><p>The lobby matchmaking terminal works for public and private combat, and the equipment station swaps guns. The match-rules screen in the drop ship still shows blank buttons, and some labels read &#x27;Text&#x27;.</p><ul class="chk">
+<div class="card" id="a-terminals"><h3>Terminals and text</h3><p>The lobby matchmaking terminal works for public and private combat, and the equipment station swaps guns. The match-rules screen in the drop ship still shows blank buttons, and some labels read &#x27;Text&#x27;. The newest build rebuilds the combat wing&#x27;s screens and gives the holographic buttons their PC colours; both wait for the next play test.</p><ul class="chk">
 <li><span class="st done">done</span><span>Lobby matchmaking terminal: Find Combat</span></li>
 <li><span class="st done">done</span><span>Lobby matchmaking terminal: private combat</span></li>
 <li><span class="st done">done</span><span>Equipment station swaps guns and tac mods</span></li>
@@ -79,13 +79,13 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <li><span class="st open">to do</span><span>Match-rules (READY) screen buttons drawn</span></li>
 <li><span class="st open">to do</span><span>Button labels, scores and timer text</span></li>
 <li><span class="st open">to do</span><span>Team select screen</span></li>
-</ul><p class="mut">Game-logic pieces rebuilt for Quest: 8 of 8 (6 reviewed).</p></div>
+</ul><p class="mut">Game-logic pieces rebuilt for Quest: 8 of 8 (8 reviewed).</p></div>
 <div class="card" id="a-orb"><h3>Orb and spawn</h3><p>The orb on the drop ship&#x27;s map table shows up and grabbing it launches you, as on PC. It doesn&#x27;t return to its stand yet.</p><ul class="chk">
 <li><span class="st done">done</span><span>The orb is visible on the map table</span></li>
 <li><span class="st done">done</span><span>Grabbing the orb launches you out</span></li>
 <li><span class="st open">to do</span><span>The orb returns to its stand</span></li>
 <li><span class="st open">to do</span><span>Respawn back on the drop ship</span></li>
-</ul><p class="mut">Game-logic pieces rebuilt for Quest: 3 of 3 (1 reviewed).</p></div>
+</ul><p class="mut">Game-logic pieces rebuilt for Quest: 3 of 3 (2 reviewed).</p></div>
 <div class="card" id="a-tubes"><h3>Launch tubes</h3><p>In a private Combustion match the orb took Ducky through a launch tube into the arena for the first time. The tube itself isn&#x27;t drawn yet and its launch button isn&#x27;t hooked up.</p><ul class="chk">
 <li><span class="st open">to do</span><span>Launch tubes drawn correctly</span></li>
 <li><span class="st partial">partly</span><span>Launch tubes move you through <span class="mut">(Orb, then tube, then arena worked in a private Combustion match; the tube itself is not drawn yet and its launch button is not hooked up.)</span></span></li>
@@ -96,7 +96,7 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <li><span class="st open">to do</span><span>Scoreboard with real names and scores</span></li>
 <li><span class="st open">to do</span><span>Kill feed</span></li>
 <li><span class="st partial">partly</span><span>Round timer and overtime text</span></li>
-</ul><p class="mut">Game-logic pieces rebuilt for Quest: 1 of 11 (1 reviewed).</p></div>
+</ul><p class="mut">Game-logic pieces rebuilt for Quest: 2 of 11 (1 reviewed).</p></div>
 <div class="card" id="a-audio"><h3>Audio</h3><p>Map ambience and hit sounds play. Gun sounds are switched off until their sound links are rebuilt.</p><ul class="chk">
 <li><span class="st done">done</span><span>Map ambience plays</span></li>
 <li><span class="st done">done</span><span>Hit sounds on the training dummy</span></li>
@@ -130,19 +130,19 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <p>Each script is rebuilt for the Quest&#x27;s ARM64 processor from the PC version: its graph is recovered, every step&#x27;s code is translated, and it is linked against the code the Quest engine already has. Some steps use node types the Quest engine never shipped scripts for; those are wired straight to the engine.</p>
 <p>Every rebuilt script passes automatic checks, then a separate review, then a test on the headset before it goes into a play build. In the table, &#x27;real&#x27; counts the steps that do their actual job on the Quest; the rest still do nothing.</p>
 <section class="card sum" aria-label="Scripts summary">
-<div class="stat"><b>29 / 100</b><span class="lab">scripts rebuilt for Quest</span></div>
-<div class="stat"><b>24</b><span class="lab">of them reviewed</span></div>
-<div class="stat"><b>43%</b><span class="lab">of all script steps real (5708 of 13332)</span></div>
-<div class="stat"><b>40 / 115</b><span class="lab">node types new to the Quest, now used by a rebuilt script</span></div>
+<div class="stat"><b>31 / 100</b><span class="lab">scripts rebuilt for Quest</span></div>
+<div class="stat"><b>28</b><span class="lab">of them reviewed</span></div>
+<div class="stat"><b>44%</b><span class="lab">of all script steps real (5847 of 13341)</span></div>
+<div class="stat"><b>44 / 115</b><span class="lab">node types new to the Quest, now used by a rebuilt script</span></div>
 </section>
 <h3>By area</h3><div class="tw"><table><thead><tr><th>Area</th><th class="n">Scripts</th><th class="n">Rebuilt</th><th class="n">Reviewed</th><th class="b">Steps real</th><th class="n">Steps</th></tr></thead><tbody>
 <tr><td>Maps</td><td class="n">6</td><td class="n">0</td><td class="n">0</td><td class="b"><div class="bar"><i style="width:0.0%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">0 / 620<br><span class="mut">0%</span></td></tr>
 <tr><td>Match flow and round start</td><td class="n">9</td><td class="n">2</td><td class="n">2</td><td class="b"><div class="bar"><i style="width:19.9%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">303 / 1521<br><span class="mut">20%</span></td></tr>
-<tr><td>Guns</td><td class="n">27</td><td class="n">13</td><td class="n">13</td><td class="b"><div class="bar"><i style="width:73.4%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">3934 / 5363<br><span class="mut">73%</span></td></tr>
-<tr><td>Terminals and text</td><td class="n">13</td><td class="n">9</td><td class="n">7</td><td class="b"><div class="bar"><i style="width:75.4%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">882 / 1170<br><span class="mut">75%</span></td></tr>
-<tr><td>Orb and spawn</td><td class="n">4</td><td class="n">3</td><td class="n">1</td><td class="b"><div class="bar"><i style="width:61.1%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">276 / 452<br><span class="mut">61%</span></td></tr>
+<tr><td>Guns</td><td class="n">27</td><td class="n">13</td><td class="n">13</td><td class="b"><div class="bar"><i style="width:73.4%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">3938 / 5363<br><span class="mut">73%</span></td></tr>
+<tr><td>Terminals and text</td><td class="n">14</td><td class="n">11</td><td class="n">10</td><td class="b"><div class="bar"><i style="width:79.8%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">1017 / 1275<br><span class="mut">80%</span></td></tr>
+<tr><td>Orb and spawn</td><td class="n">4</td><td class="n">3</td><td class="n">2</td><td class="b"><div class="bar"><i style="width:61.1%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">276 / 452<br><span class="mut">61%</span></td></tr>
 <tr><td>Launch tubes</td><td class="n">2</td><td class="n">1</td><td class="n">1</td><td class="b"><div class="bar"><i style="width:82.4%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">168 / 204<br><span class="mut">82%</span></td></tr>
-<tr><td>HUD and scoreboard</td><td class="n">19</td><td class="n">1</td><td class="n">0</td><td class="b"><div class="bar"><i style="width:7.3%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">145 / 1995<br><span class="mut">7%</span></td></tr>
+<tr><td>HUD and scoreboard</td><td class="n">18</td><td class="n">1</td><td class="n">0</td><td class="b"><div class="bar"><i style="width:7.6%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">145 / 1899<br><span class="mut">8%</span></td></tr>
 <tr><td>Audio</td><td class="n">8</td><td class="n">0</td><td class="n">0</td><td class="b"><div class="bar"><i style="width:0.0%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">0 / 510<br><span class="mut">0%</span></td></tr>
 <tr><td>Visual effects</td><td class="n">12</td><td class="n">0</td><td class="n">0</td><td class="b"><div class="bar"><i style="width:0.0%"></i><i class="p" style="width:0.0%"></i></div></td><td class="n">0 / 1497<br><span class="mut">0%</span></td></tr>
 </tbody></table></div>
@@ -168,13 +168,13 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <tr><td class="id">61f2da3c</td><td>Bullet</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">52 / 64<br><span class="mut">81%</span></td><td>yes</td></tr>
 <tr><td class="id">6dae6194</td><td>Gun: magnum</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">450 / 495<br><span class="mut">91%</span></td><td>yes</td></tr>
 <tr><td class="id">6dae7e9a</td><td>Gun: rocket launcher</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">445 / 483<br><span class="mut">92%</span></td><td>yes</td></tr>
-<tr><td class="id">9ef94a60</td><td>Gun: SMG</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">445 / 496<br><span class="mut">90%</span></td><td>yes</td></tr>
+<tr><td class="id">9ef94a60</td><td>Gun: SMG</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">447 / 496<br><span class="mut">90%</span></td><td>yes</td></tr>
 <tr><td class="id">a9db8988</td><td>Gun: scout</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">541 / 599<br><span class="mut">90%</span></td><td>yes</td></tr>
 <tr><td class="id">a9db8989</td><td>Gun: rifle</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">466 / 517<br><span class="mut">90%</span></td><td>yes</td></tr>
 <tr><td class="id">a9db8998</td><td>Gun: chain gun</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">450 / 498<br><span class="mut">90%</span></td><td>yes</td></tr>
 <tr><td class="id">afd4f843</td><td>Bullet</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">52 / 64<br><span class="mut">81%</span></td><td>yes</td></tr>
 <tr><td class="id">afd4f852</td><td>Bullet</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">52 / 64<br><span class="mut">81%</span></td><td>yes</td></tr>
-<tr><td class="id">cff4557b</td><td>Gun: assault rifle</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">444 / 495<br><span class="mut">90%</span></td><td>yes</td></tr>
+<tr><td class="id">cff4557b</td><td>Gun: assault rifle</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">446 / 495<br><span class="mut">90%</span></td><td>yes</td></tr>
 <tr><td class="id">cff74a69</td><td>Gun: blaster</td><td class="b">Guns</td><td><span class="st done">rebuilt</span></td><td class="n">457 / 507<br><span class="mut">90%</span></td><td>yes</td></tr>
 <tr><td class="id">190ed14f #1</td><td>Grenade: detonator</td><td class="b">Guns</td><td><span class="st open">placeholder</span></td><td class="n">0 / 34<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">190ed14f #2</td><td>Grenade: shared core</td><td class="b">Guns</td><td><span class="st open">placeholder</span></td><td class="n">0 / 86<br><span class="mut">0%</span></td><td>-</td></tr>
@@ -190,21 +190,22 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <tr><td class="id">afd4f853</td><td>Bullet</td><td class="b">Guns</td><td><span class="st open">placeholder</span></td><td class="n">0 / 1<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">cad33e1b</td><td>Grenade: burst</td><td class="b">Guns</td><td><span class="st open">placeholder</span></td><td class="n">0 / 32<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">fb4b399d</td><td>weapon or ordnance</td><td class="b">Guns</td><td><span class="st open">placeholder</span></td><td class="n">0 / 167<br><span class="mut">0%</span></td><td>-</td></tr>
+<tr><td class="id">495b7362</td><td>Combat wing screens, second part (likely)</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">51 / 64<br><span class="mut">80%</span></td><td>-</td></tr>
+<tr><td class="id">53da8033</td><td>Combat wing screens</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">67 / 84<br><span class="mut">80%</span></td><td>yes</td></tr>
 <tr><td class="id">69503a23</td><td>Team select</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">46 / 54<br><span class="mut">85%</span></td><td>yes</td></tr>
 <tr><td class="id">85ff96ad</td><td>Terminal buttons</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">197 / 207<br><span class="mut">95%</span></td><td>yes</td></tr>
-<tr><td class="id">b6690eae</td><td>Equipment station (frame)</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">24 / 24<br><span class="mut">100%</span></td><td>-</td></tr>
+<tr><td class="id">b6690eae</td><td>Equipment station (frame)</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">24 / 24<br><span class="mut">100%</span></td><td>yes</td></tr>
 <tr><td class="id">bcc40b4c</td><td>Terminal buttons</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">32 / 32<br><span class="mut">100%</span></td><td>yes</td></tr>
 <tr><td class="id">d15781bb</td><td>Team select</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">14 / 21<br><span class="mut">67%</span></td><td>yes</td></tr>
-<tr><td class="id">d4653fc2</td><td>Match-rules (READY) screen</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">285 / 302<br><span class="mut">94%</span></td><td>yes</td></tr>
+<tr><td class="id">d4653fc2</td><td>Match-rules (READY) screen</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">302 / 302<br><span class="mut">100%</span></td><td>yes</td></tr>
 <tr><td class="id">d56c95e9</td><td>Terminal buttons</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">189 / 207<br><span class="mut">91%</span></td><td>yes</td></tr>
-<tr><td class="id">e0fdfda9</td><td>Equipment station</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">94 / 95<br><span class="mut">99%</span></td><td>-</td></tr>
+<tr><td class="id">e0fdfda9</td><td>Equipment station</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">94 / 95<br><span class="mut">99%</span></td><td>yes</td></tr>
 <tr><td class="id">eabd80e0</td><td>Wing attack-data screen</td><td class="b">Terminals and text</td><td><span class="st done">rebuilt</span></td><td class="n">1 / 2<br><span class="mut">50%</span></td><td>yes</td></tr>
-<tr><td class="id">53da8033</td><td>Combat wing screens</td><td class="b">Terminals and text</td><td><span class="st open">placeholder</span></td><td class="n">0 / 43<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">6f6afc66</td><td>lobby or terminal</td><td class="b">Terminals and text</td><td><span class="st open">placeholder</span></td><td class="n">0 / 145<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">d61ee2a3</td><td>lobby or terminal</td><td class="b">Terminals and text</td><td><span class="st open">placeholder</span></td><td class="n">0 / 28<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">ebcd37a7</td><td>Fission event button (unconfirmed)</td><td class="b">Terminals and text</td><td><span class="st open">placeholder</span></td><td class="n">0 / 10<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">4ddac101</td><td>Spawn</td><td class="b">Orb and spawn</td><td><span class="st done">rebuilt</span></td><td class="n">60 / 79<br><span class="mut">76%</span></td><td>-</td></tr>
-<tr><td class="id">885ec987</td><td>PRESS READY pad</td><td class="b">Orb and spawn</td><td><span class="st done">rebuilt</span></td><td class="n">21 / 29<br><span class="mut">72%</span></td><td>-</td></tr>
+<tr><td class="id">885ec987</td><td>PRESS READY pad</td><td class="b">Orb and spawn</td><td><span class="st done">rebuilt</span></td><td class="n">21 / 29<br><span class="mut">72%</span></td><td>yes</td></tr>
 <tr><td class="id">e5733295</td><td>Orb and spawn exit</td><td class="b">Orb and spawn</td><td><span class="st done">rebuilt</span></td><td class="n">195 / 317<br><span class="mut">62%</span></td><td>yes</td></tr>
 <tr><td class="id">3d03502d</td><td>spawn</td><td class="b">Orb and spawn</td><td><span class="st open">placeholder</span></td><td class="n">0 / 27<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">e917a138</td><td>Launch tubes</td><td class="b">Launch tubes</td><td><span class="st done">rebuilt</span></td><td class="n">168 / 172<br><span class="mut">98%</span></td><td>yes</td></tr>
@@ -217,7 +218,6 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <tr><td class="id">253eb047</td><td>Spectator match HUD (scores, clock, objective)</td><td class="b">HUD and scoreboard</td><td><span class="st open">placeholder</span></td><td class="n">0 / 154<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">29724c5a</td><td>HUD element</td><td class="b">HUD and scoreboard</td><td><span class="st open">placeholder</span></td><td class="n">0 / 101<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">2fc9bd81</td><td>Spectator loadout panel</td><td class="b">HUD and scoreboard</td><td><span class="st open">placeholder</span></td><td class="n">0 / 141<br><span class="mut">0%</span></td><td>-</td></tr>
-<tr><td class="id">495b7362</td><td>HUD element</td><td class="b">HUD and scoreboard</td><td><span class="st open">placeholder</span></td><td class="n">0 / 96<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">4e083825</td><td>HUD element</td><td class="b">HUD and scoreboard</td><td><span class="st open">placeholder</span></td><td class="n">0 / 36<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">6c270d3b</td><td>HUD element</td><td class="b">HUD and scoreboard</td><td><span class="st open">placeholder</span></td><td class="n">0 / 97<br><span class="mut">0%</span></td><td>-</td></tr>
 <tr><td class="id">8cad334a</td><td>banner</td><td class="b">HUD and scoreboard</td><td><span class="st open">placeholder</span></td><td class="n">0 / 163<br><span class="mut">0%</span></td><td>-</td></tr>
@@ -284,6 +284,6 @@ button.tg{float:right;background:var(--card);color:var(--fg);border:1px solid va
 <h2 id="frame">Steam Frame</h2><div class="grid">
 <figure><a href="media/still-07.jpg"><img loading="lazy" src="media/still-07.jpg" alt="Steam Frame: the Dyson map table in a private match, waiting for READY."></a><figcaption>Steam Frame: the Dyson map table in a private match, waiting for READY.<span class="mut">2026-10-06</span></figcaption></figure>
 </div>
-<h2 id="issues">Known issues</h2><ul class="plain"><li>Getting into a map through the orb and launch tube works in private matches, but Fission&#x27;s arena doesn&#x27;t load on the Quest yet (you land in an empty grey space).</li><li>In Find Combat the orb can send you into the arena before the round has started; the view can jitter near the enemy gate.</li><li>Some guns can crash the game.</li><li>The match-rules (READY) screen shows blank buttons; several labels read &#x27;Text&#x27;.</li><li>Grabbing near some objects stretches the arm across the room.</li><li>The orb doesn&#x27;t go back to its stand.</li><li>No gun sounds, muzzle flashes, tracers or explosions yet.</li><li>The scoreboard shows placeholder rows.</li></ul>
-<footer>A project by Ducky. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here.<br>Page built 2026-10-07 01:02; the numbers update with every build, the words were last checked 2026-10-06 23:55.</footer>
+<h2 id="issues">Known issues</h2><ul class="plain"><li>Getting into a map through the orb and launch tube works in private matches, but Fission&#x27;s arena doesn&#x27;t load on the Quest yet (you land in an empty grey space).</li><li>In Find Combat the orb can send you into the arena before the round has started; the view can jitter near the enemy gate.</li><li>Holding the magnum or the rocket launcher for about ten seconds can crash the game.</li><li>The match-rules (READY) screen shows blank buttons; several labels read &#x27;Text&#x27;.</li><li>Grabbing near some objects stretches the arm across the room.</li><li>The orb doesn&#x27;t go back to its stand.</li><li>No gun sounds, muzzle flashes, tracers or explosions yet.</li><li>The scoreboard shows placeholder rows.</li></ul>
+<footer>A project by Ducky. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here.<br>Page built 2026-10-07 01:46; the numbers update with every build, the words were last checked 2026-10-07 01:55.</footer>
 <script>(function(){var r=document.documentElement,b=document.getElementById('tg');try{var t=localStorage.getItem('theme');if(t)r.setAttribute('data-theme',t);}catch(e){}b.onclick=function(){var d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');var n=d==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}};})();</script></body></html>
