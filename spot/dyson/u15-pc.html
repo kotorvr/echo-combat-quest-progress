@@ -1,0 +1,140 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Dyson: view 15 (PC) Every view on the PC version and on the Quest 3, one photo per page. Pick an area, step through its photos with the arrows, zoom in with the scroll wheel.">
+<meta name="color-scheme" content="dark">
+<title>Dyson: view 15 (PC) - Spot the difference</title>
+<link rel="prefetch" href="u15-quest3.html"><link rel="preload" as="image" href="../../media/compare-10-b.jpg">
+<style>
+*{box-sizing:border-box}html{background:#000}body{margin:0;background:#000;color:#fff;
+font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}button,textarea{font:inherit;color:inherit}:focus-visible{outline:3px solid #4da3ff}
+.stage{position:relative;height:calc(100vh - 48px);height:calc(100dvh - 48px);min-height:200px;overflow:hidden;background:#000;
+touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.stage.zoomed{touch-action:none;cursor:grab}.stage.drag{cursor:grabbing}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;transform-origin:0 0;
+will-change:transform;-webkit-user-drag:none}
+.top{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;gap:12px;align-items:center;padding:10px 14px 22px;
+padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right));
+background:linear-gradient(#000c,#0000);pointer-events:none;white-space:nowrap}
+.top>*{pointer-events:auto}.top a{text-decoration:none;font-weight:600}.top a:hover{text-decoration:underline}
+.side{background:#fff;color:#111;border-radius:99px;padding:2px 12px;font-weight:700}
+.cap{overflow:hidden;text-overflow:ellipsis;opacity:.85;flex:1;min-width:0}.cnt{font-variant-numeric:tabular-nums;opacity:.85}
+.nav{position:absolute;top:50%;z-index:2;transform:translateY(-50%);width:56px;height:96px;border-radius:14px;background:#0009;
+display:flex;align-items:center;justify-content:center;font-size:1.9rem;text-decoration:none}
+.nav.p{left:10px}.nav.n{right:10px}a.nav:hover{background:#000e}span.nav{opacity:.25}
+.zo{position:absolute;right:14px;bottom:12px;z-index:2;border:1px solid #fff5;background:#000a;border-radius:99px;
+padding:4px 14px;cursor:pointer}.zo[hidden]{display:none}
+.notes{background:#14161a;min-height:100vh;padding:0 16px 48px}
+.strip{display:flex;align-items:center;gap:10px;height:48px;max-width:860px;margin:0 auto;text-decoration:none}
+.strip h2{margin:0;font-size:1.05rem}.strip span{opacity:.7}.strip i{margin-left:auto;font-style:normal;opacity:.7}
+.in{max-width:860px;margin:0 auto}.lead{margin:6px 0 14px;opacity:.8}
+.notes textarea{display:block;width:100%;padding:12px;border:1px solid #fff4;border-radius:10px;background:#0006;resize:vertical}
+.row{display:flex;gap:12px;align-items:center;margin:10px 0 22px;flex-wrap:wrap}
+.post{border:0;border-radius:99px;background:#e5342b;color:#fff;font-weight:600;padding:9px 22px;cursor:pointer}
+.post:disabled{opacity:.5;cursor:default}.msg{opacity:.85}.left{margin-left:auto;opacity:.6;font-variant-numeric:tabular-nums}
+.list{list-style:none;margin:0;padding:0}.list li{border-top:1px solid #fff2;padding:14px 0}
+.list p{margin:0 0 4px;font-size:1.05rem;white-space:pre-wrap;overflow-wrap:anywhere}.list span,.mut{font-size:.82rem;opacity:.6}
+.mut{margin-top:36px}
+@media(max-width:640px){.nav{width:42px;height:70px}.cap{display:none}.top{gap:8px}}
+</style></head>
+<body data-notes="https://echocombat-notes.kotorvr.com/spot/v1/notes" data-pose="dyson-u15" data-ver="b3ba13">
+<main class="stage" id="st"><img id="im" src="../../media/compare-10-a.jpg" alt="Dyson: view 15, on PC" draggable="false">
+<header class="top"><a href="../../spot.html">&#8592; Areas</a><b>Dyson</b><span class="side">PC</span><span class="cap">Dyson: view 15. <small>2026-10-13 · blue team</small></span><span class="cnt">22 / 56</span></header>
+<a class="nav p" id="pv" href="u14-quest3.html" rel="prev" aria-label="Previous photo">&#8592;</a><a class="nav n" id="nx" href="u15-quest3.html" rel="next" aria-label="Next photo">&#8594;</a>
+<button type="button" class="zo" id="zo" hidden>Reset zoom</button></main>
+<section class="notes" id="notes" aria-labelledby="nh"><a class="strip" href="#notes"><h2 id="nh">Community notes</h2><span id="cnt"></span><i aria-hidden="true">&#8595;</i></a><div class="in"><p class="lead">Everyone sees these notes and anyone can add one. Say what looks different on the Quest 3 in this view. Plain text only, no account and no name; write nothing personal.</p>
+<form id="f"><label for="tx" class="lead">Your note on this view</label><textarea id="tx" maxlength="500" rows="3" placeholder="What looks different on the Quest 3?"></textarea><div class="row"><button class="post" id="bt">Post note</button><span class="msg" id="msg" role="status"></span><span class="left" id="left"></span></div></form>
+<p class="lead" id="none" hidden>No notes on this view yet. Be the first.</p><ol class="list" id="list"></ol>
+<noscript><p class="lead">The notes need JavaScript.</p></noscript>
+<p class="mut">Updated 2026-10-13 13:00. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here. A project by Ducky.</p></div></section>
+<script>
+(function(){
+var d=document,B=d.body,API=B.getAttribute('data-notes')||'',POSE=B.getAttribute('data-pose'),VER=B.getAttribute('data-ver');
+function $(i){return d.getElementById(i);}
+var st=$('st'),im=$('im'),zo=$('zo'),pv=$('pv'),nx=$('nx'),z=1,px=0,py=0,MAXZ=8;
+function keep(){try{if(z>1)sessionStorage.setItem('spot:zoom',JSON.stringify({v:POSE,z:z,x:px/st.clientWidth,y:py/st.clientHeight}));
+ else sessionStorage.removeItem('spot:zoom');}catch(e){}}
+function apply(){var w=st.clientWidth,h=st.clientHeight;
+ px=Math.min(0,Math.max(w-w*z,px));py=Math.min(0,Math.max(h-h*z,py));
+ im.style.transform=z>1?'translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px) scale('+z.toFixed(4)+')':'';
+ st.classList.toggle('zoomed',z>1);zo.hidden=z<=1;keep();}
+function zoomAt(cx,cy,nz){nz=Math.max(1,Math.min(MAXZ,nz));var k=nz/z;px=cx-(cx-px)*k;py=cy-(cy-py)*k;z=nz;apply();}
+function reset(){z=1;px=py=0;apply();}
+function pt(e){var b=st.getBoundingClientRect();return [e.clientX-b.left,e.clientY-b.top];}
+st.addEventListener('wheel',function(e){
+ e.preventDefault();var p=pt(e),u=e.deltaMode===1?33:e.deltaMode===2?400:1;
+ zoomAt(p[0],p[1],z*Math.exp(-Math.max(-300,Math.min(300,e.deltaY*u))*0.0016));},{passive:false});
+st.addEventListener('dblclick',function(e){if(e.target.closest('a,button'))return;var p=pt(e);if(z>1)reset();else zoomAt(p[0],p[1],2.5);});
+var ps={},d0=0,z0=1,sw=null;
+function two(){var k=Object.keys(ps);return k.length===2?[ps[k[0]],ps[k[1]]]:null;}
+function dist(t){return Math.hypot(t[0][0]-t[1][0],t[0][1]-t[1][1])||1;}
+st.addEventListener('pointerdown',function(e){
+ if(e.target.closest('a,button')||(e.pointerType==='mouse'&&e.button!==0))return;
+ ps[e.pointerId]=pt(e);var t=two();
+ if(t){d0=dist(t);z0=z;sw=null;st.style.touchAction='none';}
+ else sw={x:e.clientX,y:e.clientY};
+ if(z>1||t){try{st.setPointerCapture(e.pointerId);}catch(x){}st.classList.add('drag');e.preventDefault();}});
+st.addEventListener('pointermove',function(e){
+ var o=ps[e.pointerId];if(!o)return;var p=pt(e),t;ps[e.pointerId]=p;t=two();
+ if(t){zoomAt((t[0][0]+t[1][0])/2,(t[0][1]+t[1][1])/2,z0*dist(t)/d0);}
+ else if(z>1){px+=p[0]-o[0];py+=p[1]-o[1];apply();}});
+function up(e){
+ if(!ps[e.pointerId])return;delete ps[e.pointerId];st.classList.remove('drag');st.style.touchAction='';
+ if(sw&&z<=1&&e.type==='pointerup'){var dx=e.clientX-sw.x,dy=e.clientY-sw.y;
+  if(Math.abs(dx)>70&&Math.abs(dx)>2*Math.abs(dy))go(dx<0?nx:pv);}
+ sw=null;}
+st.addEventListener('pointerup',up);st.addEventListener('pointercancel',up);
+zo.addEventListener('click',reset);window.addEventListener('resize',apply);
+function go(a){if(a&&a.href)location.href=a.href;}
+d.addEventListener('keydown',function(e){
+ var g=e.target.tagName;if(g==='TEXTAREA'||g==='INPUT'||e.ctrlKey||e.metaKey||e.altKey)return;
+ if(e.key==='ArrowLeft')go(pv);else if(e.key==='ArrowRight')go(nx);else if(e.key==='Escape')reset();
+ else if(e.key==='+'||e.key==='=')zoomAt(st.clientWidth/2,st.clientHeight/2,z*1.4);
+ else if(e.key==='-')zoomAt(st.clientWidth/2,st.clientHeight/2,z/1.4);});
+try{var s=JSON.parse(sessionStorage.getItem('spot:zoom')||'null');
+ if(s&&s.v===POSE&&s.z>1&&s.z<=MAXZ){z=s.z;px=s.x*st.clientWidth;py=s.y*st.clientHeight;}}catch(e){}
+apply();
+var list=$('list'),cnt=$('cnt'),msg=$('msg'),tx=$('tx'),f=$('f'),left=$('left'),bt=$('bt'),n=0;
+function say(s){msg.textContent=s;}
+function row(o){
+ var li=d.createElement('li'),p=d.createElement('p'),m=d.createElement('span');
+ p.textContent=String(o.note);
+ m.textContent='#'+o.id+' · '+o.day+(o.ver===VER?'':' · written on an earlier picture of this view');
+ li.appendChild(p);li.appendChild(m);return li;}
+function count(){cnt.textContent='('+n+')';}
+function chars(){left.textContent=tx.value.length+' / 500';}
+tx.addEventListener('input',chars);chars();
+var C=null;
+function stash(){try{sessionStorage.setItem('spot:notes',JSON.stringify(C));}catch(e){}}
+function fill(){
+ C.a.filter(function(o){return o&&o.pose===POSE&&o.note;}).sort(function(x,y){return y.id-x.id;}).forEach(function(o){
+  list.appendChild(row(o));n++;});
+ count();if(!n)$('none').hidden=false;}
+if(!API){f.hidden=true;say('Notes are switched off at the moment.');}
+else{
+ try{var c=JSON.parse(sessionStorage.getItem('spot:notes')||'null');
+  if(c&&Array.isArray(c.a)&&Date.now()-c.at>=0&&Date.now()-c.at<45000)C=c;}catch(e){}
+ if(C)fill();
+ else fetch(API).then(function(r){if(!r.ok)throw 0;return r.text();}).then(function(s){
+  var a=JSON.parse(s);if(!Array.isArray(a))throw 0;C={at:Date.now(),a:a};stash();fill();
+ }).catch(function(){say('The notes cannot be loaded right now. Try again in a minute.');});
+ f.addEventListener('submit',function(e){
+  e.preventDefault();var t=tx.value.replace(/\s+/g,' ').trim();
+  if(!t){say('Write a note first.');return;}
+  bt.disabled=true;say('Posting...');
+  fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({pose:POSE,ver:VER,t:null,circles:[],note:t})}).then(function(r){
+   return r.text().then(function(s){var j={};try{j=JSON.parse(s)||{};}catch(x){}return [r.status,j];});}).then(function(a){
+   bt.disabled=false;
+   if(a[0]===201){var o={id:a[1].id,pose:POSE,note:t,ver:VER,day:new Date().toISOString().slice(0,10)};
+    list.insertBefore(row(o),list.firstChild);if(C){C.a.push(o);stash();}
+    n++;count();$('none').hidden=true;tx.value='';chars();say('Posted. Thank you.');}
+   else if(a[0]===429)say('Too many notes just now. Try again later.');
+   else if(a[0]===503)say('Notes cannot be posted right now. Try again in a minute.');
+   else if(a[0]===400&&/links/.test(a[1].error||''))say('Plain text only: no links or addresses.');
+   else if(a[0]===400||a[0]===413)say('That note cannot be posted (500 characters at most, plain text).');
+   else say('Could not post. Try again in a minute.');
+  }).catch(function(){bt.disabled=false;say('Could not post. Try again in a minute.');});});
+}
+})();
+</script></body></html>
