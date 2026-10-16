@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Played a test build? Tell us what you saw: what you did, what happened, what you expected. Screenshots and a log file help a lot.">
+<meta name="color-scheme" content="dark">
+<title>Tester feedback</title><style>
+*{box-sizing:border-box}body{margin:0;background:#0d0f12;color:#fff;font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}:focus-visible{outline:3px solid #4da3ff}
+main{max-width:720px;margin:0 auto;padding:28px 16px 60px}h1{margin:.6em 0 .2em;font-size:2rem}.lead{opacity:.8;margin:0 0 26px}
+.bk{text-decoration:none;font-weight:600}form{display:grid;gap:20px}label{display:grid;gap:6px;font-weight:600}
+.hint{font-weight:400;font-size:.88rem;opacity:.65}
+input[type=text],textarea{width:100%;font:inherit;color:#fff;background:#16181d;border:1px solid #fff3;border-radius:10px;padding:12px 14px}
+textarea{min-height:200px;resize:vertical}input[type=text]:focus,textarea:focus{border-color:#4da3ff;outline:none}
+fieldset{border:1px solid #fff3;border-radius:12px;margin:0;padding:12px 16px 16px}legend{font-weight:600;padding:0 6px}
+.hs{display:flex;flex-wrap:wrap;gap:10px}.hs label{display:flex;align-items:center;gap:8px;font-weight:400;padding:10px 14px;
+background:#16181d;border:1px solid #fff3;border-radius:10px;cursor:pointer}.hs label:has(input:checked){border-color:#4da3ff;background:#1a2433}
+input[type=file]{font:inherit;color:#fffc;max-width:100%}
+button{font:inherit;font-weight:600;color:#fff;background:#2563eb;border:0;border-radius:10px;padding:14px 22px;cursor:pointer;justify-self:start}
+button:hover{background:#1d4ed8}button:disabled{opacity:.5;cursor:default}
+#st{min-height:1.5em;margin:0}#st.ok{color:#7ee2a8}#st.err{color:#ff8a8a}
+.mut{font-size:.82rem;opacity:.6;margin-top:40px}.hn{margin:12px 0 0;padding:10px 14px;border-left:3px solid #4da3ff;background:#16181d}
+</style></head><body data-api="https://echocombat-notes.kotorvr.com/fb/v1/feedback"><main>
+<a class="bk" href="index.html">&#8592; Progress</a><h1>Tester feedback</h1><p class="lead">Played a test build? Tell us what you saw: what you did, what happened, what you expected. Screenshots and a log file help a lot.</p>
+<form id="fb" novalidate>
+<label>Username <span class="hint">the name you play under</span><input type="text" name="username" maxlength="40" required autocomplete="nickname"></label>
+<fieldset><legend>Headset</legend><div class="hs"><label><input type="radio" name="headset" value="quest2" required> Quest 2</label><label><input type="radio" name="headset" value="quest3" required> Quest 3</label><label><input type="radio" name="headset" value="quest_pro" required> Quest Pro</label><label><input type="radio" name="headset" value="pc" required> PC</label></div><p class="hn" data-for="quest2" hidden>Quest 2 players: if your in-game hands still point or turn the wrong way, please tell us how (mirrored, palms flipped, tilted).</p></fieldset>
+<label>What happened? <span class="hint">what you did, what you saw, what you expected; map and mode help</span><textarea name="text" maxlength="5000" required></textarea></label>
+<label>Screenshots <span class="hint">optional, up to 4 PNG or JPEG, 6 MB each</span><input type="file" name="shot" accept="image/png,image/jpeg" multiple></label>
+<label>Log file <span class="hint">optional, one text file (or the same zipped), up to 8 MB</span><input type="file" name="log" accept=".txt,.log,.gz,.zip,text/plain"></label>
+<button id="go" type="submit">Send feedback</button><p id="st" role="status" aria-live="polite"></p>
+</form><p class="mut">Only what you type and attach is stored. Pictures lose their hidden details (camera, place, time) before they are kept. A log file can hold your player id and the server addresses you played on. Feedback goes to the project, it is not shown on this site.</p></main>
+<script>
+(function(){
+var d=document,f=d.getElementById('fb'),st=d.getElementById('st'),go=d.getElementById('go'),API=d.body.getAttribute('data-api');
+var MS=6291456,MAXS=4,ML=8388608;
+function say(t,c){st.textContent=t;st.className=c||'';}
+function hn(){var v=(f.querySelector('input[name=headset]:checked')||{}).value;
+ [].forEach.call(d.querySelectorAll('.hn'),function(p){p.hidden=p.getAttribute('data-for')!==v;});}
+[].forEach.call(f.querySelectorAll('input[name=headset]'),function(r){r.addEventListener('change',hn);});
+f.addEventListener('reset',function(){setTimeout(hn,0);});
+f.addEventListener('submit',function(ev){
+ ev.preventDefault();
+ var s=f.elements.shot.files,l=f.elements.log.files;
+ if(!f.elements.username.value.trim())return say('Please enter your username.','err');
+ if(!f.querySelector('input[name=headset]:checked'))return say('Please pick your headset.','err');
+ if(!f.elements.text.value.trim())return say('Please say what happened.','err');
+ if(s.length>MAXS)return say('At most '+MAXS+' screenshots.','err');
+ for(var i=0;i<s.length;i++){if(s[i].size>MS)return say(s[i].name+' is over '+(MS>>20)+' MB.','err');
+  if(!/^image\/(png|jpeg)$/.test(s[i].type))return say(s[i].name+': screenshots must be PNG or JPEG.','err');}
+ if(l.length&&l[0].size>ML)return say('The log file is over '+(ML>>20)+' MB.','err');
+ var fd=new FormData();
+ fd.append('username',f.elements.username.value);
+ fd.append('headset',(f.querySelector('input[name=headset]:checked')||{}).value||'');
+ fd.append('text',f.elements.text.value);
+ for(var j=0;j<s.length;j++)fd.append('shot',s[j],'shot');
+ if(l.length)fd.append('log',l[0],'log');
+ go.disabled=true;say('Sending…');
+ fetch(API,{method:'POST',body:fd,mode:'cors',credentials:'omit'}).then(function(r){
+  return r.json().catch(function(){return {};}).then(function(j){return [r.status,j];});
+ }).then(function(a){
+  go.disabled=false;
+  if(a[0]===201){f.reset();say('Thank you! Your feedback was sent (#'+a[1].id+').','ok');return;}
+  var e=(a[1]&&a[1].error)||'';
+  if(a[0]===429)return say('A lot of feedback just arrived. Please try again in a few minutes.','err');
+  if(a[0]===413||/too big/.test(e))return say('The attachments are too big together. Leave one out and send again.','err');
+  if(a[0]===400)return say('Please check the form: '+e+'.','err');
+  say('Sending did not work just now ('+a[0]+'). Please try again later.','err');
+ },function(){go.disabled=false;say('Could not reach the feedback service. Please try again later.','err');});
+});
+})();
+</script></body></html>
