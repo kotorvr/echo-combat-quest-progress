@@ -117,10 +117,10 @@ footer{margin:56px 0 0;padding:20px 0 40px;font-size:.86rem;color:var(--mut);bor
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style></head><body>
 <nav class="top" aria-label="Sections"><div class="wrap"><div class="links"><a href="#areas">Areas</a><a href="#scripts">Scripts</a><a href="spot.html">Spot the difference</a><a href="feedback.html">Tester feedback</a></div><button class="tg" id="tg" type="button" aria-label="Switch light or dark">&#9680;<span class="lg"> Light / dark</span></button></div></nav>
-<header class="hero"><div class="wrap"><h1>Echo Combat on Quest</h1><p class="tag">Ducky&#x27;s fan port of Echo Combat to the standalone Quest 3 and the Steam Frame. This page tracks how far it has come.</p><div class="stats"><div class="stat"><b>99.55%</b><span>of the PC game logic a headset runs, on the Quest (newest test build)</span></div></div><p class="upd">Updated 2026-10-16 15:42. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here.</p></div></header>
+<header class="hero"><div class="wrap"><h1>Echo Combat on Quest</h1><p class="tag">Ducky&#x27;s fan port of Echo Combat to the standalone Quest 3 and the Steam Frame. This page tracks how far it has come.</p><div class="stats"><div class="stat"><b>99.96%</b><span>of the PC game logic a headset runs, on the Quest (newest test build)</span></div></div><p class="upd">Updated 2026-10-16 20:47. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here.</p></div></header>
 <main>
 <section class="sec" id="areas"><div class="wrap"><h2>Areas</h2><div class="tw"><table class="ar"><thead><tr><th>Area</th><th>Works</th><th>Missing</th></tr></thead><tbody>
-<tr id="a-scripting"><td><b>Scripting</b></td><td>99.55 % of the game&#x27;s script steps run (12,500 of 12,557).</td><td>57 steps: small gun-hand steps on the 8 guns (attach, animation blend, rumble), a few UI text and fade steps, spectator player-detail steps, some lobby buttons.</td></tr>
+<tr id="a-scripting"><td><b>Scripting</b></td><td>100 % of the stock game&#x27;s script steps run. With the EchoCombat mod: 99.96 % (12,603 of 12,608).</td><td>5 steps of the EchoCombat mod&#x27;s wall (its material colour steps).</td></tr>
 <tr id="a-engine"><td><b>Engine</b></td><td>Line of sight and cover, gun connect, item table. Fix built: own-team point capture (no more &quot;point stolen&quot;), late-starting scripts, hit-feedback colours, markers and store page, spectator camera, bullet impact sounds, four on-screen text labels, drone crash guard.</td><td>The vent on the right hand, edge-light flicker.</td></tr>
 <tr id="a-echocombat"><td><b>EchoCombat mod</b></td><td>Dot field, Starburst rifle, the mod&#x27;s sound bank and balance values, shared magazine, equip voice lines.</td><td>Wall, translocator effect, smoke, point and buff, overcharge, the tac-mod controller, drone, gear icons, bots.</td></tr>
 <tr id="a-effects"><td><b>PC effects</b></td><td>Gun effects show on all 8 guns; hit sparks, rocket cloud and blaster burst match the PC shapes.</td><td>A short freeze on the first shot; the old Quest muzzle flash and tracer still draw on top of the PC ones; sizes not yet measured against PC.</td></tr>
@@ -130,101 +130,101 @@ footer{margin:56px 0 0;padding:20px 0 40px;font-size:.86rem;color:var(--mut);bor
 <p class="lead">How the port works, and where each of the game's combat scripts stands.</p>
 <div class="explain"><div class="card"><p>Echo Combat&#x27;s game logic (guns, bullets, the match flow, terminals, the orb, the HUD) lives in about 100 small scripts. Each script is a graph of steps (nodes), compiled to native code. Combat&#x27;s scripts only ever shipped for the PC&#x27;s x86-64 processors.</p></div><div class="card"><p>The Quest version of Echo VR has the same engine, but none of these combat scripts. Until a script is rebuilt, the Quest runs an empty placeholder in its place, so the map loads but nothing in it works.</p></div><div class="card"><p>Each script is rebuilt for the Quest&#x27;s ARM64 processor from the PC version: its graph is recovered, every step&#x27;s code is translated, and it is linked against the code the Quest engine already has. Some steps use node types the Quest engine never shipped scripts for; those are wired straight to the engine.</p></div><div class="card"><p>Every rebuilt script passes automatic checks, then a separate review, then a test on the headset before it goes into a play build.</p></div></div>
 <h3>Checked step by step against the PC</h3>
-<div class="sum" aria-label="Steps checked against the PC"><div class="stat"><b>99.55%</b><span>of the PC game logic a player&#x27;s headset runs is on the Quest in the newest test build (12,500 of 12,557 steps, 107 scripts)</span></div></div>
-<p class="mut">Not every step of a PC script needs to run on the headset. Each step of 107 scripts (14,916 steps) is sorted by what the PC game itself does with it:</p>
-<div class="keys"><div><span class="sw k1" aria-hidden="true"></span>On Quest: <b>12,500</b><span class="mut">runs on the Quest as on the PC</span></div><div><span class="sw k2" aria-hidden="true"></span>To port: <b>57</b><span class="mut">the PC game runs it, the Quest doesn&#x27;t yet: the fix list</span></div><div><span class="sw k3" aria-hidden="true"></span>Server only: <b>78</b><span class="mut">in online play the PC server runs it, so the headset doesn&#x27;t need to</span></div><div><span class="sw k4" aria-hidden="true"></span>Dead on PC: <b>2,281</b><span class="mut">never runs on the PC either: nothing to port</span></div></div>
+<div class="sum" aria-label="Steps checked against the PC"><div class="stat"><b>99.96%</b><span>of the PC game logic a player&#x27;s headset runs is on the Quest in the newest test build (12,603 of 12,608 steps, 109 scripts)</span></div></div>
+<p class="mut">Not every step of a PC script needs to run on the headset. Each step of 109 scripts (15,010 steps) is sorted by what the PC game itself does with it:</p>
+<div class="keys"><div><span class="sw k1" aria-hidden="true"></span>On Quest: <b>12,603</b><span class="mut">runs on the Quest as on the PC</span></div><div><span class="sw k2" aria-hidden="true"></span>To port: <b>5</b><span class="mut">the PC game runs it, the Quest doesn&#x27;t yet: the fix list</span></div><div><span class="sw k3" aria-hidden="true"></span>Server only: <b>78</b><span class="mut">in online play the PC server runs it, so the headset doesn&#x27;t need to</span></div><div><span class="sw k4" aria-hidden="true"></span>Dead on PC: <b>2,324</b><span class="mut">never runs on the PC either: nothing to port</span></div></div>
 <div class="tw"><table class="scope"><thead><tr><th>Area</th><th>Steps by kind</th><th class="n hide-s">On Quest</th><th class="n hide-s">To port</th><th class="n hide-s">Server only</th><th class="n hide-s">Dead on PC</th><th class="n" title="on Quest / (on Quest + to port)">Done<span class="hide-s"> of what the headset needs</span></th></tr></thead><tbody>
-<tr><td>Maps<span class="mut sub">6 of 6 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="343 on quest, 0 to port, 12 server only, 63 dead on pc"><i class="k1" style="flex-grow:343" title="On Quest: 343"></i><i class="k3" style="flex-grow:12" title="Server only: 12"></i><i class="k4" style="flex-grow:63" title="Dead on PC: 63"></i></div></td><td class="n hide-s">343</td><td class="n hide-s">0</td><td class="n hide-s">12</td><td class="n hide-s">63</td><td class="n"><b>100%</b></td></tr>
-<tr><td>Match flow and round start<span class="mut sub">8 of 9 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="965 on quest, 4 to port, 65 server only, 272 dead on pc"><i class="k1" style="flex-grow:965" title="On Quest: 965"></i><i class="k2" style="flex-grow:4" title="To port: 4"></i><i class="k3" style="flex-grow:65" title="Server only: 65"></i><i class="k4" style="flex-grow:272" title="Dead on PC: 272"></i></div></td><td class="n hide-s">965</td><td class="n hide-s">4</td><td class="n hide-s">65</td><td class="n hide-s">272</td><td class="n"><b>99%</b></td></tr>
-<tr><td>Guns<span class="mut sub">27 of 27 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="5,300 on quest, 22 to port, 0 server only, 1,348 dead on pc"><i class="k1" style="flex-grow:5300" title="On Quest: 5,300"></i><i class="k2" style="flex-grow:22" title="To port: 22"></i><i class="k4" style="flex-grow:1348" title="Dead on PC: 1,348"></i></div></td><td class="n hide-s">5,300</td><td class="n hide-s">22</td><td class="n hide-s">0</td><td class="n hide-s">1,348</td><td class="n"><b>99%</b></td></tr>
-<tr><td>Terminals and text<span class="mut sub">14 of 14 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="1,306 on quest, 9 to port, 1 server only, 225 dead on pc"><i class="k1" style="flex-grow:1306" title="On Quest: 1,306"></i><i class="k2" style="flex-grow:9" title="To port: 9"></i><i class="k3" style="flex-grow:1" title="Server only: 1"></i><i class="k4" style="flex-grow:225" title="Dead on PC: 225"></i></div></td><td class="n hide-s">1,306</td><td class="n hide-s">9</td><td class="n hide-s">1</td><td class="n hide-s">225</td><td class="n"><b>99%</b></td></tr>
-<tr><td>Orb and spawn<span class="mut sub">4 of 4 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="482 on quest, 7 to port, 0 server only, 60 dead on pc"><i class="k1" style="flex-grow:482" title="On Quest: 482"></i><i class="k2" style="flex-grow:7" title="To port: 7"></i><i class="k4" style="flex-grow:60" title="Dead on PC: 60"></i></div></td><td class="n hide-s">482</td><td class="n hide-s">7</td><td class="n hide-s">0</td><td class="n hide-s">60</td><td class="n"><b>98%</b></td></tr>
+<tr><td>Maps<span class="mut sub">6 of 6 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="345 on quest, 0 to port, 12 server only, 63 dead on pc"><i class="k1" style="flex-grow:345" title="On Quest: 345"></i><i class="k3" style="flex-grow:12" title="Server only: 12"></i><i class="k4" style="flex-grow:63" title="Dead on PC: 63"></i></div></td><td class="n hide-s">345</td><td class="n hide-s">0</td><td class="n hide-s">12</td><td class="n hide-s">63</td><td class="n"><b>100%</b></td></tr>
+<tr><td>Match flow and round start<span class="mut sub">9 of 9 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="972 on quest, 0 to port, 65 server only, 272 dead on pc"><i class="k1" style="flex-grow:972" title="On Quest: 972"></i><i class="k3" style="flex-grow:65" title="Server only: 65"></i><i class="k4" style="flex-grow:272" title="Dead on PC: 272"></i></div></td><td class="n hide-s">972</td><td class="n hide-s">0</td><td class="n hide-s">65</td><td class="n hide-s">272</td><td class="n"><b>100%</b></td></tr>
+<tr><td>Guns<span class="mut sub">27 of 27 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="5,333 on quest, 5 to port, 0 server only, 1,332 dead on pc"><i class="k1" style="flex-grow:5333" title="On Quest: 5,333"></i><i class="k2" style="flex-grow:5" title="To port: 5"></i><i class="k4" style="flex-grow:1332" title="Dead on PC: 1,332"></i></div></td><td class="n hide-s">5,333</td><td class="n hide-s">5</td><td class="n hide-s">0</td><td class="n hide-s">1,332</td><td class="n"><b>99%</b></td></tr>
+<tr><td>Terminals and text<span class="mut sub">14 of 14 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="1,323 on quest, 0 to port, 1 server only, 217 dead on pc"><i class="k1" style="flex-grow:1323" title="On Quest: 1,323"></i><i class="k3" style="flex-grow:1" title="Server only: 1"></i><i class="k4" style="flex-grow:217" title="Dead on PC: 217"></i></div></td><td class="n hide-s">1,323</td><td class="n hide-s">0</td><td class="n hide-s">1</td><td class="n hide-s">217</td><td class="n"><b>100%</b></td></tr>
+<tr><td>Orb and spawn<span class="mut sub">4 of 4 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="498 on quest, 0 to port, 0 server only, 51 dead on pc"><i class="k1" style="flex-grow:498" title="On Quest: 498"></i><i class="k4" style="flex-grow:51" title="Dead on PC: 51"></i></div></td><td class="n hide-s">498</td><td class="n hide-s">0</td><td class="n hide-s">0</td><td class="n hide-s">51</td><td class="n"><b>100%</b></td></tr>
 <tr><td>Launch tubes<span class="mut sub">2 of 2 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="269 on quest, 0 to port, 0 server only, 7 dead on pc"><i class="k1" style="flex-grow:269" title="On Quest: 269"></i><i class="k4" style="flex-grow:7" title="Dead on PC: 7"></i></div></td><td class="n hide-s">269</td><td class="n hide-s">0</td><td class="n hide-s">0</td><td class="n hide-s">7</td><td class="n"><b>100%</b></td></tr>
-<tr><td>HUD and scoreboard<span class="mut sub">17 of 18 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="2,410 on quest, 12 to port, 0 server only, 121 dead on pc"><i class="k1" style="flex-grow:2410" title="On Quest: 2,410"></i><i class="k2" style="flex-grow:12" title="To port: 12"></i><i class="k4" style="flex-grow:121" title="Dead on PC: 121"></i></div></td><td class="n hide-s">2,410</td><td class="n hide-s">12</td><td class="n hide-s">0</td><td class="n hide-s">121</td><td class="n"><b>99%</b></td></tr>
+<tr><td>HUD and scoreboard<span class="mut sub">18 of 18 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="2,422 on quest, 0 to port, 0 server only, 210 dead on pc"><i class="k1" style="flex-grow:2422" title="On Quest: 2,422"></i><i class="k4" style="flex-grow:210" title="Dead on PC: 210"></i></div></td><td class="n hide-s">2,422</td><td class="n hide-s">0</td><td class="n hide-s">0</td><td class="n hide-s">210</td><td class="n"><b>100%</b></td></tr>
 <tr><td>Audio<span class="mut sub">8 of 8 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="351 on quest, 0 to port, 0 server only, 43 dead on pc"><i class="k1" style="flex-grow:351" title="On Quest: 351"></i><i class="k4" style="flex-grow:43" title="Dead on PC: 43"></i></div></td><td class="n hide-s">351</td><td class="n hide-s">0</td><td class="n hide-s">0</td><td class="n hide-s">43</td><td class="n"><b>100%</b></td></tr>
-<tr><td>Visual effects<span class="mut sub">12 of 12 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="978 on quest, 1 to port, 0 server only, 128 dead on pc"><i class="k1" style="flex-grow:978" title="On Quest: 978"></i><i class="k2" style="flex-grow:1" title="To port: 1"></i><i class="k4" style="flex-grow:128" title="Dead on PC: 128"></i></div></td><td class="n hide-s">978</td><td class="n hide-s">1</td><td class="n hide-s">0</td><td class="n hide-s">128</td><td class="n"><b>99%</b></td></tr>
+<tr><td>Visual effects<span class="mut sub">12 of 12 scripts checked</span></td><td class="bc"><div class="sb" role="img" aria-label="990 on quest, 0 to port, 0 server only, 115 dead on pc"><i class="k1" style="flex-grow:990" title="On Quest: 990"></i><i class="k4" style="flex-grow:115" title="Dead on PC: 115"></i></div></td><td class="n hide-s">990</td><td class="n hide-s">0</td><td class="n hide-s">0</td><td class="n hide-s">115</td><td class="n"><b>100%</b></td></tr>
 </tbody></table></div><p class="mut small">Done: steps on the Quest out of the steps a headset needs (on Quest + to port). Hover a bar for its counts.</p>
 <h3>All 100 scripts</h3><p class="mut">Short ID, what it does (where known), and how many of the steps a headset needs are on the Quest.</p><div class="tw" style="max-height:70vh"><table><thead><tr><th>ID</th><th>What</th><th class="hide-s">Area</th><th class="n">Steps on Quest</th></tr></thead><tbody>
-<tr><td class="id">03f14657</td><td>Combat level logic (spectator side)</td><td class="hide-s">Maps</td><td class="n">28 / 28</td></tr>
+<tr><td class="id">03f14657</td><td>Combat level logic (spectator side)</td><td class="hide-s">Maps</td><td class="n">30 / 30</td></tr>
 <tr><td class="id">3af8a0b8</td><td>Level settings swap</td><td class="hide-s">Maps</td><td class="n">2 / 2</td></tr>
 <tr><td class="id">7c461983</td><td>Combustion map script</td><td class="hide-s">Maps</td><td class="n">22 / 22</td></tr>
 <tr><td class="id">e9a57ec0</td><td>Surge map script (loads its parts)</td><td class="hide-s">Maps</td><td class="n">166 / 166</td></tr>
 <tr><td class="id">e9a57ec3</td><td>Dyson map loader</td><td class="hide-s">Maps</td><td class="n">22 / 22</td></tr>
 <tr><td class="id">ec45140b</td><td>Fission map loader (sections, checkpoints)</td><td class="hide-s">Maps</td><td class="n">103 / 103</td></tr>
-<tr><td class="id">45e8df51</td><td>Payload match rules</td><td class="hide-s">Match flow and round start</td><td class="n">165 / 166</td></tr>
-<tr><td class="id">6fa8cc9c</td><td>Match flow (pre-match, round start, main loop)</td><td class="hide-s">Match flow and round start</td><td class="n">121 / 122</td></tr>
+<tr><td class="id">45e8df51</td><td>Payload match rules</td><td class="hide-s">Match flow and round start</td><td class="n">166 / 166</td></tr>
+<tr><td class="id">6fa8cc9c</td><td>Match flow (pre-match, round start, main loop)</td><td class="hide-s">Match flow and round start</td><td class="n">122 / 122</td></tr>
 <tr><td class="id">adf5c8a9 #1</td><td>Payload cart rules</td><td class="hide-s">Match flow and round start</td><td class="n">269 / 269</td></tr>
-<tr><td class="id">b7d10bcf</td><td>Capture point rules</td><td class="hide-s">Match flow and round start</td><td class="n">215 / 217</td></tr>
+<tr><td class="id">b7d10bcf</td><td>Capture point rules</td><td class="hide-s">Match flow and round start</td><td class="n">217 / 217</td></tr>
 <tr><td class="id">cc091b46</td><td>Fission and Surge objective logic</td><td class="hide-s">Match flow and round start</td><td class="n">60 / 60</td></tr>
 <tr><td class="id">cdfb3188</td><td>Capture point zones (claiming and capture progress)</td><td class="hide-s">Match flow and round start</td><td class="n">78 / 78</td></tr>
 <tr><td class="id">e6ae32d4</td><td>Payload map marker (likely)</td><td class="hide-s">Match flow and round start</td><td class="n">4 / 4</td></tr>
 <tr><td class="id">ee180570</td><td>Spawn shields (the doors into the map)</td><td class="hide-s">Match flow and round start</td><td class="n">53 / 53</td></tr>
-<tr><td class="id">92c0ff5a</td><td>Checkpoint marker (likely)</td><td class="hide-s">Match flow and round start</td><td class="n">-</td></tr>
+<tr><td class="id">92c0ff5a</td><td>Checkpoint marker (likely)</td><td class="hide-s">Match flow and round start</td><td class="n">3 / 3</td></tr>
 <tr><td class="id">190ed14f #1</td><td>Grenade: detonator</td><td class="hide-s">Guns</td><td class="n">58 / 58</td></tr>
-<tr><td class="id">190ed14f #2</td><td>Grenade: shared core</td><td class="hide-s">Guns</td><td class="n">161 / 168</td></tr>
+<tr><td class="id">190ed14f #2</td><td>Grenade: shared core</td><td class="hide-s">Guns</td><td class="n">168 / 168</td></tr>
 <tr><td class="id">190ed14f #3</td><td>Grenade: stun</td><td class="hide-s">Guns</td><td class="n">104 / 104</td></tr>
 <tr><td class="id">221a0a3a</td><td>Auto-target</td><td class="hide-s">Guns</td><td class="n">33 / 33</td></tr>
 <tr><td class="id">31791321</td><td>Loadout manager</td><td class="hide-s">Guns</td><td class="n">36 / 36</td></tr>
 <tr><td class="id">3a678375</td><td>Grenade remote trigger</td><td class="hide-s">Guns</td><td class="n">45 / 45</td></tr>
 <tr><td class="id">54cd6d57</td><td>Bullet</td><td class="hide-s">Guns</td><td class="n">5 / 5</td></tr>
 <tr><td class="id">61f2da3c</td><td>Bullet</td><td class="hide-s">Guns</td><td class="n">5 / 5</td></tr>
-<tr><td class="id">6dae6194</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">499 / 502</td></tr>
-<tr><td class="id">6dae7e9a</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">487 / 492</td></tr>
+<tr><td class="id">6dae6194</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">502 / 502</td></tr>
+<tr><td class="id">6dae7e9a</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">492 / 492</td></tr>
 <tr><td class="id">9398a165</td><td>Grenade magazine</td><td class="hide-s">Guns</td><td class="n">25 / 25</td></tr>
-<tr><td class="id">97d0806e #1</td><td>Grenade: lingering damage (likely)</td><td class="hide-s">Guns</td><td class="n">95 / 95</td></tr>
-<tr><td class="id">97d0806e #2</td><td>Grenade: arc mine</td><td class="hide-s">Guns</td><td class="n">329 / 329</td></tr>
+<tr><td class="id">97d0806e #1</td><td>Grenade: lingering damage (likely)</td><td class="hide-s">Guns</td><td class="n">97 / 97</td></tr>
+<tr><td class="id">97d0806e #2</td><td>Grenade: arc mine</td><td class="hide-s">Guns</td><td class="n">330 / 330</td></tr>
 <tr><td class="id">99096f90</td><td>Bullet</td><td class="hide-s">Guns</td><td class="n">14 / 14</td></tr>
 <tr><td class="id">9909709e</td><td>Explosive shot (gun not matched yet)</td><td class="hide-s">Guns</td><td class="n">24 / 24</td></tr>
-<tr><td class="id">9ef94a60</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">504 / 505</td></tr>
-<tr><td class="id">a9db8988</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">596 / 598</td></tr>
-<tr><td class="id">a9db8989</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">515 / 516</td></tr>
-<tr><td class="id">a9db8998</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">506 / 507</td></tr>
-<tr><td class="id">ac4e9374</td><td>Barrier shield</td><td class="hide-s">Guns</td><td class="n">65 / 65</td></tr>
+<tr><td class="id">9ef94a60</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">505 / 505</td></tr>
+<tr><td class="id">a9db8988</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">611 / 611</td></tr>
+<tr><td class="id">a9db8989</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">516 / 516</td></tr>
+<tr><td class="id">a9db8998</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">507 / 507</td></tr>
+<tr><td class="id">ac4e9374</td><td>Barrier shield</td><td class="hide-s">Guns</td><td class="n">60 / 65</td></tr>
 <tr><td class="id">afd4f843</td><td>Bullet</td><td class="hide-s">Guns</td><td class="n">5 / 5</td></tr>
 <tr><td class="id">afd4f852</td><td>Bullet</td><td class="hide-s">Guns</td><td class="n">5 / 5</td></tr>
 <tr><td class="id">afd4f853</td><td>Bullet</td><td class="hide-s">Guns</td><td class="n">12 / 12</td></tr>
 <tr><td class="id">cad33e1b</td><td>Grenade: burst</td><td class="hide-s">Guns</td><td class="n">50 / 50</td></tr>
-<tr><td class="id">cff4557b</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">502 / 503</td></tr>
-<tr><td class="id">cff74a69</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">514 / 515</td></tr>
+<tr><td class="id">cff4557b</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">503 / 503</td></tr>
+<tr><td class="id">cff74a69</td><td>Gun (name not matched yet)</td><td class="hide-s">Guns</td><td class="n">515 / 515</td></tr>
 <tr><td class="id">fb4b399d</td><td>Heal barrier</td><td class="hide-s">Guns</td><td class="n">106 / 106</td></tr>
 <tr><td class="id">495b7362</td><td>Combat wing screens, second part (likely)</td><td class="hide-s">Terminals and text</td><td class="n">38 / 38</td></tr>
 <tr><td class="id">53da8033</td><td>Combat wing screens</td><td class="hide-s">Terminals and text</td><td class="n">92 / 92</td></tr>
 <tr><td class="id">69503a23</td><td>Team select</td><td class="hide-s">Terminals and text</td><td class="n">57 / 57</td></tr>
 <tr><td class="id">6f6afc66</td><td>Lobby combat wing logic</td><td class="hide-s">Terminals and text</td><td class="n">121 / 121</td></tr>
-<tr><td class="id">85ff96ad</td><td>Terminal buttons</td><td class="hide-s">Terminals and text</td><td class="n">228 / 232</td></tr>
+<tr><td class="id">85ff96ad</td><td>Terminal buttons</td><td class="hide-s">Terminals and text</td><td class="n">236 / 236</td></tr>
 <tr><td class="id">b6690eae</td><td>Equipment station (frame)</td><td class="hide-s">Terminals and text</td><td class="n">18 / 18</td></tr>
 <tr><td class="id">bcc40b4c</td><td>Terminal buttons</td><td class="hide-s">Terminals and text</td><td class="n">39 / 39</td></tr>
 <tr><td class="id">d15781bb</td><td>Team select</td><td class="hide-s">Terminals and text</td><td class="n">12 / 12</td></tr>
 <tr><td class="id">d4653fc2</td><td>Match-rules (READY) screen</td><td class="hide-s">Terminals and text</td><td class="n">332 / 332</td></tr>
-<tr><td class="id">d56c95e9</td><td>Terminal buttons</td><td class="hide-s">Terminals and text</td><td class="n">230 / 235</td></tr>
+<tr><td class="id">d56c95e9</td><td>Terminal buttons</td><td class="hide-s">Terminals and text</td><td class="n">239 / 239</td></tr>
 <tr><td class="id">d61ee2a3</td><td>Lobby weapons-free and cease-fire calls</td><td class="hide-s">Terminals and text</td><td class="n">19 / 19</td></tr>
 <tr><td class="id">e0fdfda9</td><td>Equipment station</td><td class="hide-s">Terminals and text</td><td class="n">114 / 114</td></tr>
 <tr><td class="id">eabd80e0</td><td>Wing attack-data screen</td><td class="hide-s">Terminals and text</td><td class="n">1 / 1</td></tr>
 <tr><td class="id">ebcd37a7</td><td>Fission event button (unconfirmed)</td><td class="hide-s">Terminals and text</td><td class="n">5 / 5</td></tr>
 <tr><td class="id">3d03502d</td><td>Spawn helper</td><td class="hide-s">Orb and spawn</td><td class="n">21 / 21</td></tr>
-<tr><td class="id">4ddac101</td><td>Spawn</td><td class="hide-s">Orb and spawn</td><td class="n">97 / 97</td></tr>
-<tr><td class="id">885ec987</td><td>PRESS READY pad</td><td class="hide-s">Orb and spawn</td><td class="n">29 / 33</td></tr>
-<tr><td class="id">e5733295</td><td>Orb and spawn exit</td><td class="hide-s">Orb and spawn</td><td class="n">335 / 338</td></tr>
+<tr><td class="id">4ddac101</td><td>Spawn</td><td class="hide-s">Orb and spawn</td><td class="n">106 / 106</td></tr>
+<tr><td class="id">885ec987</td><td>PRESS READY pad</td><td class="hide-s">Orb and spawn</td><td class="n">33 / 33</td></tr>
+<tr><td class="id">e5733295</td><td>Orb and spawn exit</td><td class="hide-s">Orb and spawn</td><td class="n">338 / 338</td></tr>
 <tr><td class="id">039b5a24</td><td>Wing launch-tube lights</td><td class="hide-s">Launch tubes</td><td class="n">62 / 62</td></tr>
 <tr><td class="id">e917a138</td><td>Launch tubes</td><td class="hide-s">Launch tubes</td><td class="n">207 / 207</td></tr>
 <tr><td class="id">027e0002</td><td>Payload progress marker</td><td class="hide-s">HUD and scoreboard</td><td class="n">32 / 32</td></tr>
 <tr><td class="id">0f8e15af</td><td>Scoreboard board</td><td class="hide-s">HUD and scoreboard</td><td class="n">154 / 154</td></tr>
 <tr><td class="id">10a27372</td><td>Player name tags</td><td class="hide-s">HUD and scoreboard</td><td class="n">84 / 84</td></tr>
 <tr><td class="id">1801bc5b</td><td>Spectator loadout and roster tiles</td><td class="hide-s">HUD and scoreboard</td><td class="n">238 / 238</td></tr>
-<tr><td class="id">19b82cf8</td><td>Combat markers</td><td class="hide-s">HUD and scoreboard</td><td class="n">145 / 153</td></tr>
+<tr><td class="id">19b82cf8</td><td>Combat markers</td><td class="hide-s">HUD and scoreboard</td><td class="n">153 / 153</td></tr>
 <tr><td class="id">253eb047</td><td>Spectator match HUD (scores, clock, objective)</td><td class="hide-s">HUD and scoreboard</td><td class="n">516 / 516</td></tr>
 <tr><td class="id">29724c5a</td><td>Combat HUD element</td><td class="hide-s">HUD and scoreboard</td><td class="n">76 / 76</td></tr>
-<tr><td class="id">2fc9bd81</td><td>Spectator loadout panel</td><td class="hide-s">HUD and scoreboard</td><td class="n">349 / 352</td></tr>
+<tr><td class="id">2fc9bd81</td><td>Spectator loadout panel</td><td class="hide-s">HUD and scoreboard</td><td class="n">352 / 352</td></tr>
 <tr><td class="id">4e083825</td><td>Payload progress display</td><td class="hide-s">HUD and scoreboard</td><td class="n">28 / 28</td></tr>
 <tr><td class="id">8cad334a</td><td>End-of-match player banners</td><td class="hide-s">HUD and scoreboard</td><td class="n">138 / 138</td></tr>
 <tr><td class="id">92421ef7</td><td>Capture point charge bars</td><td class="hide-s">HUD and scoreboard</td><td class="n">28 / 28</td></tr>
 <tr><td class="id">b286e82b</td><td>Capture point display</td><td class="hide-s">HUD and scoreboard</td><td class="n">170 / 170</td></tr>
-<tr><td class="id">d54ba841</td><td>Surge door countdown</td><td class="hide-s">HUD and scoreboard</td><td class="n">44 / 45</td></tr>
+<tr><td class="id">d54ba841</td><td>Surge door countdown</td><td class="hide-s">HUD and scoreboard</td><td class="n">45 / 45</td></tr>
 <tr><td class="id">d7c272ba</td><td>Spectator view</td><td class="hide-s">HUD and scoreboard</td><td class="n">44 / 44</td></tr>
 <tr><td class="id">d7c76b8b</td><td>Spectator minimap</td><td class="hide-s">HUD and scoreboard</td><td class="n">97 / 97</td></tr>
 <tr><td class="id">d9593515</td><td>Kill feed</td><td class="hide-s">HUD and scoreboard</td><td class="n">120 / 120</td></tr>
 <tr><td class="id">db94b293</td><td>Fission and Surge HUD element</td><td class="hide-s">HUD and scoreboard</td><td class="n">147 / 147</td></tr>
-<tr><td class="id">6c270d3b</td><td>Combat HUD element</td><td class="hide-s">HUD and scoreboard</td><td class="n">-</td></tr>
+<tr><td class="id">6c270d3b</td><td>Combat HUD element</td><td class="hide-s">HUD and scoreboard</td><td class="n">nothing to port</td></tr>
 <tr><td class="id">1348b672</td><td>Music for Dyson and Combustion</td><td class="hide-s">Audio</td><td class="n">41 / 41</td></tr>
 <tr><td class="id">2d08ef44</td><td>Lobby combat wing sounds</td><td class="hide-s">Audio</td><td class="n">nothing to port</td></tr>
 <tr><td class="id">49ccf7be</td><td>Combat map sounds</td><td class="hide-s">Audio</td><td class="n">6 / 6</td></tr>
@@ -234,21 +234,21 @@ footer{margin:56px 0 0;padding:20px 0 40px;font-size:.86rem;color:var(--mut);bor
 <tr><td class="id">8b654802</td><td>Surge sounds</td><td class="hide-s">Audio</td><td class="n">11 / 11</td></tr>
 <tr><td class="id">dd3c7a5c</td><td>Scoreboard sounds (likely)</td><td class="hide-s">Audio</td><td class="n">nothing to port</td></tr>
 <tr><td class="id">1f7867ac</td><td>Combustion and Dyson effect</td><td class="hide-s">Visual effects</td><td class="n">61 / 61</td></tr>
-<tr><td class="id">4f1b2a7e</td><td>Fission progress effects</td><td class="hide-s">Visual effects</td><td class="n">395 / 396</td></tr>
+<tr><td class="id">4f1b2a7e</td><td>Fission progress effects</td><td class="hide-s">Visual effects</td><td class="n">393 / 393</td></tr>
 <tr><td class="id">546ab1df</td><td>Dyson win glow</td><td class="hide-s">Visual effects</td><td class="n">31 / 31</td></tr>
 <tr><td class="id">7d36dd07</td><td>Combustion effect</td><td class="hide-s">Visual effects</td><td class="n">14 / 14</td></tr>
 <tr><td class="id">8a2739f7</td><td>Combustion and Dyson effect</td><td class="hide-s">Visual effects</td><td class="n">16 / 16</td></tr>
 <tr><td class="id">96b14a7d</td><td>Objective marker look</td><td class="hide-s">Visual effects</td><td class="n">47 / 47</td></tr>
 <tr><td class="id">980d8e1b</td><td>Combustion map effects (likely)</td><td class="hide-s">Visual effects</td><td class="n">29 / 29</td></tr>
 <tr><td class="id">ac999400</td><td>Surge effect</td><td class="hide-s">Visual effects</td><td class="n">13 / 13</td></tr>
-<tr><td class="id">adf5c8a9 #2</td><td>Payload flamingo effects (fire breath, vents)</td><td class="hide-s">Visual effects</td><td class="n">200 / 200</td></tr>
+<tr><td class="id">adf5c8a9 #2</td><td>Payload flamingo effects (fire breath, vents)</td><td class="hide-s">Visual effects</td><td class="n">214 / 214</td></tr>
 <tr><td class="id">d33ecb0e</td><td>Ship diamond glow and sparklers</td><td class="hide-s">Visual effects</td><td class="n">89 / 89</td></tr>
 <tr><td class="id">d6e346e2</td><td>Crate glow</td><td class="hide-s">Visual effects</td><td class="n">39 / 39</td></tr>
 <tr><td class="id">db83d326</td><td>Surge effect</td><td class="hide-s">Visual effects</td><td class="n">44 / 44</td></tr>
 </tbody></table></div></div></section>
 <section class="sec" id="compare"><div class="wrap"><h2>PC vs Quest 3</h2><p class="lead"><a href="spot.html">Spot the difference: every view on the PC and on the Quest 3, one at a time &#8594;</a></p></div></section>
 </main>
-<footer><div class="wrap">A project by Ducky. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here.<br>Page built 2026-10-16 15:42; the numbers update with every reviewed build, the words were last checked 2026-10-13 14:00.</div></footer>
+<footer><div class="wrap">A project by Ducky. Fan project. Not affiliated with or endorsed by Ready At Dawn or Meta. Echo VR and Echo Combat belong to their owners. No game files or builds are shared here.<br>Page built 2026-10-16 20:47; the numbers update with every reviewed build, the words were last checked 2026-10-13 14:00.</div></footer>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer" hidden><div class="lb-bar"><span class="lb-n"></span><button type="button" class="lb-x" aria-label="Close">&#10005;</button></div><div class="lb-stage"></div><button type="button" class="lb-nav p" aria-label="Previous">&#8592;</button><button type="button" class="lb-nav n" aria-label="Next">&#8594;</button><p class="lb-cap"></p></div>
 <script>
 (function(){
