@@ -1,0 +1,222 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Lobby: view 3: PC vs Quest 3. Every view on the PC version and on the Quest 3, one view per page. Pick an area, step through its views with the arrows, drag the line, zoom in with the scroll wheel.">
+<meta name="color-scheme" content="dark">
+<title>Lobby: view 3: PC vs Quest 3 - Spot the difference</title>
+<link rel="prefetch" href="u04.html"><link rel="preload" as="image" href="../../media/compare-108-a.jpg"><link rel="preload" as="image" href="../../media/compare-108-b.jpg">
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#000;color:#fff;
+font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,textarea{font:inherit;color:inherit}a{color:inherit;text-decoration:none}:focus-visible{outline:3px solid #4da3ff}
+#ph{position:fixed;inset:0 372px 0 0;overflow:hidden;background:#000;--x:50%;touch-action:none;user-select:none;
+-webkit-user-select:none;cursor:grab}
+#ph.pan{cursor:grabbing}#ph.marking{cursor:crosshair}body.nopanel #ph{right:0}
+.ly{position:absolute;inset:0;overflow:hidden;pointer-events:none}#lb{clip-path:inset(0 0 0 var(--x))}
+.ly img,.ly svg{position:absolute;transform-origin:0 0;display:block;max-width:none;-webkit-user-drag:none}
+#mk circle{fill:none;stroke-width:6;vector-effect:non-scaling-stroke}#mk circle.mine{stroke:#ff3b30}
+#mk circle.theirs{stroke:#ffd23b;stroke-dasharray:10 7}#mk circle.theirs.hot{stroke-width:9;stroke-dasharray:none}
+#ln{position:absolute;top:0;bottom:0;left:var(--x);width:3px;margin-left:-1.5px;background:#fff;box-shadow:0 0 6px #000;
+z-index:2;pointer-events:none}
+#hd{position:absolute;top:50%;left:var(--x);width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;padding:0;
+background:#fff;color:#111;font-size:1.1rem;font-weight:700;cursor:ew-resize;z-index:2;box-shadow:0 1px 8px #000a;touch-action:none}
+.side{position:absolute;top:64px;z-index:2;padding:4px 12px;border-radius:99px;background:#000b;font-weight:700;
+font-size:.85rem;pointer-events:none;white-space:nowrap}.side small{font-weight:400;opacity:.8;margin-left:6px}
+#sa{left:76px}#sb{right:76px}.side[hidden]{display:none}
+.ui{position:fixed;z-index:3}
+.glass{background:rgba(14,16,20,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid #fff3}
+#top{top:10px;left:10px;right:10px;display:flex;gap:10px;align-items:center;pointer-events:none}#top>*{pointer-events:auto}
+.chip{border-radius:99px;padding:7px 14px;white-space:nowrap}
+#title{overflow:hidden;text-overflow:ellipsis;min-width:0}#title b{font-size:1.02rem}
+#title span{opacity:.75;margin-left:8px;font-variant-numeric:tabular-nums}#title small{opacity:.75;margin-left:8px}
+#maps{display:flex;gap:4px;border-radius:99px;padding:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;flex:none;max-width:100%}
+#maps::-webkit-scrollbar{display:none}
+#maps a,#maps span{padding:5px 12px;border-radius:99px;white-space:nowrap}#maps span{opacity:.4}
+#maps a[aria-current=page]{background:#fff;color:#111;font-weight:700}#maps a:hover:not([aria-current]){background:#fff2}
+.nav{top:50%;transform:translateY(-50%);width:54px;height:92px;border-radius:14px;font-size:2rem;display:grid;place-items:center}
+a.nav:hover{background:rgba(14,16,20,.95)}span.nav{opacity:.3}
+#pv{left:10px}#nx{right:382px}body.nopanel #nx{right:10px}
+#tools{left:10px;bottom:10px;display:flex;gap:6px;align-items:center;border-radius:99px;padding:5px}
+#tools button{border:0;background:none;border-radius:99px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+#tools button:hover{background:#fff2}#tools button[aria-pressed=true]{background:#e5342b;font-weight:700}
+#tools button:disabled{opacity:.35;cursor:default;background:none}
+#zr{padding:0 10px 0 6px;opacity:.8;font-variant-numeric:tabular-nums}
+#panel{top:64px;right:10px;bottom:10px;width:352px;border-radius:14px;display:flex;flex-direction:column;overflow:hidden}
+body.nopanel #panel{display:none}
+#panel h2{margin:0;padding:12px 14px 10px;font-size:1rem;display:flex;align-items:baseline;gap:8px;border-bottom:1px solid #fff2}
+#panel h2 small{font-weight:400;opacity:.7}
+#hide{margin-left:auto;border:0;background:none;cursor:pointer;opacity:.75;padding:0 2px;font-size:.85rem}#hide:hover{opacity:1}
+#list{flex:1;overflow-y:auto;margin:0;padding:6px 8px;list-style:none;scrollbar-width:thin}
+#list li{padding:8px;border-radius:8px;overflow-wrap:anywhere;white-space:pre-wrap}#list li:hover{background:#fff1}
+#list li span{display:block;font-size:.78rem;opacity:.65;margin-top:2px}
+#none,#lead{opacity:.7;text-align:center;padding:18px 14px 0;margin:0}#none[hidden]{display:none}#lead{font-size:.8rem;padding-top:10px}#lead:empty{display:none}
+#f{padding:10px;border-top:1px solid #fff2;display:grid;gap:8px}#f[hidden]{display:none}
+#tx{width:100%;height:64px;resize:none;border-radius:8px;border:1px solid #fff4;background:#0008;padding:8px}
+#row{display:flex;align-items:center;gap:8px;font-size:.8rem}#msg{flex:1;opacity:.8}
+#bt{border:0;border-radius:99px;background:#fff;color:#111;font-weight:700;padding:8px 18px;cursor:pointer}
+#bt:disabled{opacity:.4;cursor:default}
+#ptog{top:10px;right:10px;border-radius:99px;padding:7px 14px;cursor:pointer;display:none}
+body.nopanel #ptog{display:block}body.nopanel #maps{margin-right:190px}
+@media (max-width:900px){
+ #ph{inset:0 0 calc(44vh + 10px) 0}body.nopanel #ph{bottom:0}
+ #panel{top:auto;left:10px;right:10px;width:auto;height:44vh}#nx{right:10px}
+ #top{flex-wrap:wrap;gap:6px}#maps{margin-left:0}.side{top:104px}
+ #tools{bottom:calc(44vh + 20px)}body.nopanel #tools{bottom:10px}
+ #ptog{top:auto;bottom:10px}body.nopanel #maps{margin-right:0}
+ .nav{width:42px;height:70px;top:calc(28vh + 40px)}body.nopanel .nav{top:50%}#sa{left:60px}#sb{right:60px}
+ #tools{font-size:.82rem;gap:0;max-width:calc(100vw - 20px)}#tools button{padding:7px 9px}
+}
+</style></head>
+<body data-notes="https://echocombat-notes.kotorvr.com/spot/v1/notes" data-pose="lobby-u03" data-ver="8c85b2">
+<main id="ph" aria-label="Lobby: view 3. Left of the line: PC. Right of the line: Quest 3.">
+<div class="ly"><img id="ia" src="../../media/compare-107-a.jpg" alt="Lobby: view 3 on PC" draggable="false"></div>
+<div class="ly" id="lb"><img id="ib" src="../../media/compare-107-b.jpg" alt="Lobby: view 3 on Quest 3" draggable="false"></div>
+<div class="ly"><svg id="mk" viewBox="0 0 1280 800" preserveAspectRatio="none"></svg></div><div class="side" id="sa">PC</div>
+<div class="side" id="sb">Quest 3<small>2026-10-16</small></div><div id="ln"></div><button type="button" id="hd" role="slider" aria-label="Divider between PC and Quest 3" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">&#8596;</button>
+</main>
+<header class="ui" id="top"><a class="glass chip" href="../../spot.html">&#8592; Areas</a><div class="glass chip" id="title"><b>Lobby</b> view 3<span>13 / 45</span></div><nav class="glass" id="maps" aria-label="Areas"><a href="../dyson/index.html">Dyson</a><a href="../combustion/index.html">Combustion</a><a href="../fission/index.html">Fission</a><a href="../surge/index.html">Surge</a><a href="../lobby/index.html" aria-current="page">Lobby</a></nav></header>
+<a class="ui glass nav" id="pv" href="u02.html" rel="prev" aria-label="Previous view">&#8249;</a><a class="ui glass nav" id="nx" href="u04.html" rel="next" aria-label="Next view">&#8250;</a>
+<div class="ui glass" id="tools"><button type="button" id="circ" aria-pressed="false" title="Drag on the picture to circle a difference">&#9711; Circle a difference</button><button type="button" id="undo" disabled>Undo</button><button type="button" id="zo" disabled title="The scroll wheel zooms; drag moves the picture">Reset zoom</button><span id="zr">100%</span></div>
+<button type="button" class="ui glass" id="ptog">Community notes (<span id="n2">0</span>)</button>
+<aside class="ui glass" id="panel" aria-label="Community notes for this view"><h2>Community notes <small>this view &#183; <span id="n1">0</span></small><button type="button" id="hide">Hide</button></h2><p id="none" hidden>No notes on this view yet. Circle what looks different and say what it is.</p><p id="lead"></p><ol id="list"></ol>
+<form id="f"><textarea id="tx" maxlength="500" aria-label="Your note on this view" placeholder="What is different here? Everyone can read this."></textarea><div id="row"><span id="msg" role="status"></span><button id="bt" disabled>Post</button></div></form><noscript><p>The slider, the zoom and the notes need JavaScript.</p></noscript></aside>
+<script>
+(function(){
+var d=document,B=d.body,API=B.getAttribute('data-notes')||'',POSE=B.getAttribute('data-pose'),VER=B.getAttribute('data-ver');
+function $(i){return d.getElementById(i);}
+var ph=$('ph'),ia=$('ia'),ib=$('ib'),mk=$('mk'),hd=$('hd'),sa=$('sa'),sb=$('sb'),pv=$('pv'),nx=$('nx'),zr=$('zr'),zo=$('zo'),ln=$('ln');
+var IW=1280,IH=800,MAXZ=8,MAXC=8,z=1,px=0,py=0,x0=0,y0=0,w0=1,h0=1,split=50,mine=[],notes=[],marking=false,hot=-1;
+var layers=[ia,mk];if(ib)layers.push(ib);
+function fit(){var W=ph.clientWidth,H=ph.clientHeight,k=Math.min(W/IW,H/IH);w0=IW*k;h0=IH*k;x0=(W-w0)/2;y0=(H-h0)/2;apply();}
+function apply(){
+ z=Math.max(1,Math.min(MAXZ,z));px=Math.min(0,Math.max(w0*(1-z),px));py=Math.min(0,Math.max(h0*(1-z),py));
+ layers.forEach(function(el){var s=el.style;s.left=x0+'px';s.top=y0+'px';s.width=w0+'px';s.height=h0+'px';
+  s.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px) scale('+z.toFixed(4)+')';});
+ zr.textContent=Math.round(z*100)+'%';zo.disabled=z<=1;
+ if(ln){var a=Math.max(0,y0+py),b=Math.max(0,ph.clientHeight-(y0+py+h0*z));ln.style.top=a+'px';ln.style.bottom=b+'px';}
+ setSplit(split);}
+function zoomAt(cx,cy,nz){nz=Math.max(1,Math.min(MAXZ,nz));var k=nz/z;px=(cx-x0)-((cx-x0)-px)*k;py=(cy-y0)-((cy-y0)-py)*k;z=nz;apply();}
+function reset(){z=1;px=py=0;apply();}
+function pt(e){var b=ph.getBoundingClientRect();return [e.clientX-b.left,e.clientY-b.top];}
+function toImg(p){return {x:((p[0]-x0-px)/z)/w0,y:((p[1]-y0-py)/z)/h0};}
+function setSplit(v){split=Math.max(0,Math.min(100,v));ph.style.setProperty('--x',split+'%');
+ if(!hd)return;hd.setAttribute('aria-valuenow',Math.round(split));
+ var pw=ph.clientWidth,sx=pw*split/100;sa.hidden=sx<150;sb.hidden=sx>pw-sb.clientWidth-90;}
+function setSize(){IW=ia.naturalWidth||IW;IH=ia.naturalHeight||IH;mk.setAttribute('viewBox','0 0 '+IW+' '+IH);fit();draw();}
+if(ia.complete)setSize();ia.addEventListener('load',setSize);
+ph.addEventListener('wheel',function(e){
+ e.preventDefault();var p=pt(e),u=e.deltaMode===1?33:e.deltaMode===2?400:1;
+ zoomAt(p[0],p[1],z*Math.exp(-Math.max(-300,Math.min(300,e.deltaY*u))*0.0016));},{passive:false});
+ph.addEventListener('dblclick',function(e){if(marking||e.target===hd)return;var p=pt(e);if(z>1)reset();else zoomAt(p[0],p[1],2.5);});
+zo.addEventListener('click',reset);window.addEventListener('resize',fit);
+if(hd){
+ var hdOn=false;
+ hd.addEventListener('pointerdown',function(e){e.stopPropagation();hdOn=true;try{hd.setPointerCapture(e.pointerId);}catch(x){}});
+ hd.addEventListener('pointermove',function(e){if(hdOn)setSplit(pt(e)[0]/ph.clientWidth*100);});
+ function hdUp(){hdOn=false;}
+ hd.addEventListener('pointerup',hdUp);hd.addEventListener('pointercancel',hdUp);
+ hd.addEventListener('dblclick',function(e){e.stopPropagation();});
+ hd.addEventListener('keydown',function(e){
+  if(e.key==='ArrowLeft'){setSplit(split-2);e.stopPropagation();e.preventDefault();}
+  if(e.key==='ArrowRight'){setSplit(split+2);e.stopPropagation();e.preventDefault();}});
+}
+var ps={},d0=0,z0=1,cur=null;
+function two(){var k=Object.keys(ps);return k.length===2?[ps[k[0]],ps[k[1]]]:null;}
+function dist(t){return Math.hypot(t[0][0]-t[1][0],t[0][1]-t[1][1])||1;}
+ph.addEventListener('pointerdown',function(e){
+ if(e.pointerType==='mouse'&&e.button!==0)return;
+ var p=pt(e);ps[e.pointerId]=p;try{ph.setPointerCapture(e.pointerId);}catch(x){}
+ var t=two();
+ if(t){d0=dist(t);z0=z;if(cur){mine.pop();cur=null;draw();}}
+ else if(marking){if(mine.length<MAXC){var q=toImg(p);cur={x:q.x,y:q.y,r:0};mine.push(cur);}}
+ else ph.classList.add('pan');});
+ph.addEventListener('pointermove',function(e){
+ var o=ps[e.pointerId];if(!o)return;var p=pt(e),t;ps[e.pointerId]=p;t=two();
+ if(t)zoomAt((t[0][0]+t[1][0])/2,(t[0][1]+t[1][1])/2,z0*dist(t)/d0);
+ else if(cur){var q=toImg(p),dx=(q.x-cur.x)*IW,dy=(q.y-cur.y)*IH;cur.r=Math.sqrt(dx*dx+dy*dy)/IW;draw();}
+ else if(!marking){px+=p[0]-o[0];py+=p[1]-o[1];apply();}});
+function up(e){
+ if(!ps[e.pointerId])return;delete ps[e.pointerId];ph.classList.remove('pan');
+ if(cur){if(e.type!=='pointerup'||cur.r<0.008||cur.x<0||cur.x>1||cur.y<0||cur.y>1)mine.pop();
+  else{cur.x=+cur.x.toFixed(4);cur.y=+cur.y.toFixed(4);cur.r=+Math.min(0.5,cur.r).toFixed(4);}
+  cur=null;draw();sync();}}
+ph.addEventListener('pointerup',up);ph.addEventListener('pointercancel',up);
+function ring(c,cls){var el=d.createElementNS(mk.namespaceURI,'circle');
+ el.setAttribute('cx',c.x*IW);el.setAttribute('cy',c.y*IH);el.setAttribute('r',Math.max(1,c.r*IW));el.setAttribute('class',cls);
+ mk.appendChild(el);}
+function draw(){
+ while(mk.firstChild)mk.removeChild(mk.firstChild);
+ notes.forEach(function(n,i){n.circles.forEach(function(c){ring(c,'theirs'+(i===hot?' hot':''));});});
+ mine.forEach(function(c){ring(c,'mine');});}
+var circ=$('circ'),undo=$('undo'),tx=$('tx'),bt=$('bt'),f=$('f'),list=$('list'),msg=$('msg'),none=$('none');
+var HINT='Public. Your red circles are posted with the note.';
+function say(s){msg.textContent=s;}
+function sync(){
+ undo.disabled=!mine.length;bt.disabled=!(tx.value.trim()||mine.length);
+ say(mine.length?'Public. '+mine.length+' red circle'+(mine.length>1?'s':'')+' will be posted with it.':HINT);
+ try{if(tx.value||mine.length)sessionStorage.setItem('spot:draft:'+POSE,JSON.stringify({t:tx.value,c:mine,v:VER}));
+  else sessionStorage.removeItem('spot:draft:'+POSE);}catch(e){}}
+circ.addEventListener('click',function(){marking=!marking;circ.setAttribute('aria-pressed',marking);ph.classList.toggle('marking',marking);});
+undo.addEventListener('click',function(){mine.pop();draw();sync();});
+tx.addEventListener('input',sync);
+function num(v,lo,hi){v=Number(v);return v>=lo&&v<=hi?v:null;}
+function rings(a){var o=[];if(!Array.isArray(a))return o;
+ a.slice(0,MAXC).forEach(function(c){if(!c)return;var x=num(c.x,0,1),y=num(c.y,0,1),r=num(c.r,0.005,0.5);
+  if(x!==null&&y!==null&&r!==null)o.push({x:x,y:y,r:r});});return o;}
+function row(o,i){
+ var li=d.createElement('li'),m=d.createElement('span'),n=o.circles.length;
+ li.textContent=String(o.note||'(circles only)');
+ m.textContent='#'+Number(o.id)+' · '+String(o.day).slice(0,10)+(n?' · '+n+' circle'+(n>1?'s':''):'');
+ li.appendChild(m);
+ li.addEventListener('mouseenter',function(){hot=notes.indexOf(o);draw();});
+ li.addEventListener('mouseleave',function(){hot=-1;draw();});
+ return li;}
+function show(){
+ while(list.firstChild)list.removeChild(list.firstChild);
+ notes.forEach(function(o){list.appendChild(row(o));});
+ $('n1').textContent=notes.length;$('n2').textContent=notes.length;none.hidden=notes.length>0;draw();}
+function take(o){var old=o.ver!==VER;return {id:o.id,day:o.day,note:o.note,old:old,circles:old?[]:rings(o.circles)};}
+var C=null;
+function stash(){try{sessionStorage.setItem('spot:notes',JSON.stringify(C));}catch(e){}}
+function fill(){
+ notes=C.a.filter(function(o){return o&&o.pose===POSE&&(o.note||(o.circles&&o.circles.length));})
+  .sort(function(x,y){return y.id-x.id;}).map(take);show();}
+function busy(){none.hidden=true;$('lead').textContent='The notes are busy right now. Try again in a minute.';}
+try{var dr=JSON.parse(sessionStorage.getItem('spot:draft:'+POSE)||'null');
+ if(dr){tx.value=String(dr.t||'').slice(0,500);if(dr.v===VER)mine=rings(dr.c);}}catch(e){}
+if(!API){f.hidden=true;none.hidden=true;$('lead').textContent='Notes are switched off at the moment.';}
+else{
+ try{var c=JSON.parse(sessionStorage.getItem('spot:notes')||'null');
+  if(c&&Array.isArray(c.a)&&Date.now()-c.at>=0&&Date.now()-c.at<45000)C=c;}catch(e){}
+ if(C)fill();
+ else fetch(API).then(function(r){if(!r.ok)throw 0;return r.text();}).then(function(s){
+  var a=JSON.parse(s);if(!Array.isArray(a))throw 0;C={at:Date.now(),a:a};stash();fill();
+ }).catch(busy);
+ f.addEventListener('submit',function(e){
+  e.preventDefault();var t=tx.value.replace(/\s+/g,' ').trim(),cs=mine.slice();
+  if(!t&&!cs.length)return;
+  bt.disabled=true;say('Posting...');
+  fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({pose:POSE,ver:VER,t:null,circles:cs,note:t})}).then(function(r){
+   return r.text().then(function(s){var j={};try{j=JSON.parse(s)||{};}catch(x){}return [r.status,j];});}).then(function(a){
+   if(a[0]===201){var o={id:a[1].id,pose:POSE,note:t,ver:VER,circles:cs,day:new Date().toISOString().slice(0,10)};
+    if(C){C.a.push(o);stash();}
+    notes.unshift(take(o));mine=[];tx.value='';show();sync();say('Posted. Thank you.');return;}
+   bt.disabled=false;
+   if(a[0]===429)say('Too many notes just now. Try again later.');
+   else if(a[0]===503)say('The notes are busy right now. Try again in a minute.');
+   else if(a[0]===400&&/links/.test(a[1].error||''))say('Plain text only: no links or addresses.');
+   else if(a[0]===400||a[0]===413)say('That note cannot be posted (500 characters at most, plain text).');
+   else say('Could not post. Try again in a minute.');
+  }).catch(function(){bt.disabled=false;say('Could not post. Try again in a minute.');});});
+}
+$('hide').addEventListener('click',function(){B.classList.add('nopanel');fit();});
+$('ptog').addEventListener('click',function(){B.classList.remove('nopanel');fit();});
+function go(a){if(a&&a.href)location.href=a.href;}
+d.addEventListener('keydown',function(e){
+ var g=e.target.tagName;if(g==='TEXTAREA'||g==='INPUT'||g==='BUTTON'||e.ctrlKey||e.metaKey||e.altKey)return;
+ if(e.key==='ArrowLeft')go(pv);else if(e.key==='ArrowRight')go(nx);else if(e.key==='Escape')reset();
+ else if(e.key==='+'||e.key==='=')zoomAt(ph.clientWidth/2,ph.clientHeight/2,z*1.4);
+ else if(e.key==='-')zoomAt(ph.clientWidth/2,ph.clientHeight/2,z/1.4);});
+fit();draw();sync();
+})();
+</script></body></html>
